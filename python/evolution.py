@@ -3,61 +3,7 @@ import numpy as np
 import NSGAII
 from deap import algorithms, base, benchmarks, tools, creator
 
-from operations import *
-
-def program_from_evolution(logbook):
-    """ Generate Biocode program from evolution
-    """
-    length = sum(logbook.columns_len)
-    popped = logbook.pop()
-    if length == 73:
-        if popped["evals"]== 26:
-            program = [
-                randomnode_op(),
-                set_op(1),
-                influenceneighbors_op(1.0),
-                swap_op(),
-                newnode_op(),
-                attachtoinfluenced_op(),
-                clearinfluenced_op(),
-                influenceneighbors_op(0.5),
-                swap_op(),
-                influenceneighbors_op(0.5),
-                detachfrominfluenced_op(),
-                swap_op(),
-                detachfrominfluenced_op(),
-                clearinfluenced_op(),
-                skip_op(0.5),
-                createedge_op()
-            ]
-        else:
-            return
-    elif length == 69:
-        program = [
-            newnode_op(),
-            save_op(),
-            randomedge_op(),
-            skip_op(0.5),
-            swap_op(),
-            load_op(),
-            createedge_op(),
-            rewind_op(5, "i")
-        ]
-    else:
-        program = [
-            randomnode_op(),
-            clear_op("r2"),
-            influenceneighbors_op(0.5),
-            swap_op(),
-            newnode_op(),
-            createedge_op(),
-            attachtoinfluenced_op()
-        ]
-
-    return program
-
-
-def evolution(NGEN,seed=None):
+def evolution(NGEN,population,seed=None):
     random.seed(seed)
 
     # Initialize statistics object
@@ -84,7 +30,7 @@ def evolution(NGEN,seed=None):
         return sum(individual),
     toolbox.register("evaluate", evalOneMax)
 
-    MU = int(NGEN/100)
+    MU = population
     CXPB, MUTPB = 0.5, 0.2
     pop = toolbox.population(n=MU)
 

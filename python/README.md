@@ -17,10 +17,13 @@ Sample run for all following 3 networks:
 	python runexample.py
 	
 The runexample.py scripts shows how to run a basic learning and program
-selection procedure using Python. The learning procedure is
-associated with a variety of genetic algorithm parameters that can be
-customized in each example's '.params' file.  Please see the ECJ and
+selection procedure using Python. Default output folder is "output".
+
+The learning procedure is associated with a variety of genetic algorithm parameters that can be
+customized in each example's '.params' file. Please see the ECJ and
 DEAP documentation for more information on what these parameters mean.
+
+
 
 To Do
 -----

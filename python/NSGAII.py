@@ -1,7 +1,4 @@
 # Program Name: NSGA-II.py
-# Description: This is a python implementation of Prof. Kalyanmoy Deb's popular NSGA-II algorithm
-# Author: Haris Ali Khan 
-# Supervisor: Prof. Manoj Kumar Tiwari
 
 #Importing required modules
 import math

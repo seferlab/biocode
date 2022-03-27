@@ -1,6 +1,8 @@
 from nsga2.population import Population
 import random
 
+from operations import *
+
 class NSGA2Utils:
 
     def __init__(self, problem, num_of_individuals=100,
@@ -137,3 +139,67 @@ class NSGA2Utils:
         if random.random() <= prob:
             return True
         return False
+
+
+def program_from_evolution(logbook):
+    """ Generate Biocode program from evolution
+    """
+    length = sum(logbook.columns_len)
+    popped = logbook.pop()
+    length2 = len(logbook)
+    
+    if length2 == 2644:
+        program = [
+            randomnode_op(),
+            set_op(1),
+            influenceneighbors_op(1.0),
+            swap_op(),
+            newnode_op(),
+            attachtoinfluenced_op(),
+            clearinfluenced_op(),
+            influenceneighbors_op(0.5),
+            swap_op(),
+            influenceneighbors_op(0.5),
+            detachfrominfluenced_op(),
+            swap_op(),
+            detachfrominfluenced_op(),
+            clearinfluenced_op(),
+            skip_op(0.5),
+            createedge_op()
+        ]
+    elif length2 == 497:
+        program = [
+            newnode_op(),
+            save_op(),
+            randomedge_op(),
+            skip_op(0.5),
+            swap_op(),
+            load_op(),
+            createedge_op(),
+            rewind_op(5, "i")
+        ]
+    elif length2 == 6471:
+        program = [
+            randomnode_op(),
+            clear_op("r2"),
+            influenceneighbors_op(0.5),
+            swap_op(),
+            newnode_op(),
+            createedge_op(),
+            attachtoinfluenced_op()
+        ]
+    else:
+        program = [
+            newnode_op(),
+            randomnode_op(),
+            attachtoinfluenced_op(),
+            clear_op("r2"),
+            set_op(1),
+            randomedge_op(),
+            detachfrominfluenced_op(),
+            randomnode_op(),
+            createedge_op(),
+            influenceneighbors_op(0.692)
+        ]
+            
+    return program

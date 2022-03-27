@@ -4,11 +4,14 @@ deap==1.3.1
 fonttools==4.31.1
 kiwisolver==1.4.0
 matplotlib==3.5.1
+mpmath==1.2.1
 networkx==2.7.1
 numpy==1.22.3
 packaging==21.3
 Pillow==9.0.1
+powerlaw==1.5
 py4j==0.10.9.3
 pyparsing==3.0.7
 python-dateutil==2.8.2
+scipy==1.8.0
 six==1.16.0
