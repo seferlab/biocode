@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "biocode"
+version = "1.0.0"
+description = "BioCode / GrowCode: learning how biological networks grow (Python port)"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = ["numpy>=1.21", "deap>=1.3"]
+
+[project.optional-dependencies]
+plots = ["matplotlib>=3.5"]
+test = ["pytest>=7", "networkx>=2.6"]
+
+[project.scripts]
+biocode = "biocode.__main__:main"
+
+[tool.setuptools]
+packages = ["biocode"]
